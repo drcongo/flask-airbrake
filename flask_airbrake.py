@@ -18,8 +18,9 @@ except ImportError:
 def make_client(client_cls, app, environment=None, base_url=None):
     api_key = app.config.get('AIRBRAKE_API_KEY')
     project_id = app.config.get('AIRBRAKE_PROJECT_ID')
+    base_url = app.config.get('AIRBRAKE_HOST', None)
     return client_cls(
-        project_id, api_key, environment, base_url
+        project_id=project_id, api_key=api_key, host=base_url, timeout=None
     )
 
 
